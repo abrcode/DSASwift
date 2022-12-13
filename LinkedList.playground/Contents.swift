@@ -14,6 +14,51 @@ class LinkedList {
     
     var head : Node?
     
+    
+    // MARK: - Find Element from linked list
+    func find(key : Int) -> Node? {
+        
+        var activeNode = head
+        
+        while activeNode != nil && activeNode?.data != key {
+            activeNode = activeNode?.next
+        }
+        
+        return activeNode
+        
+    }
+    
+    
+    
+    // MARK: - Delete key from linkedlist
+    
+    func delete(key : Int) -> Node? {
+     
+        if head == nil { return head }
+        
+        var curr = head
+        var prev : Node?
+        
+        // we need to handle previous pointer also
+        while curr != nil && curr?.data != key {
+            
+            prev = curr
+            curr = curr?.next
+            
+        }
+        
+        if prev == nil && curr != nil{
+            head = curr?.next
+        } else if curr == nil {
+            return nil
+        } else {
+            prev?.next = curr?.next
+        }
+        
+        
+        return curr
+    }
+    
     //creating a new node and with that we assign head(Pointer) to a new node for begining
     func insert(data: Int){
         
@@ -59,7 +104,9 @@ linkedList.insert(data: 1)
 linkedList.insert(data: 9)
 linkedList.insert(data: 7)
 
-linkedList.printList()
 
-linkedList.append(data: 13)
+let found = linkedList.find(key: 5)
+let deleted =  linkedList.delete(key: 1)
+
+print("Value of key :\(found?.data ?? -1)")
 linkedList.printList()
