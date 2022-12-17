@@ -82,5 +82,6 @@ root.rightNode?.leftNode = BinaryNode(data: 4)
 root.rightNode?.rightNode = BinaryNode(data: 7)
 
 root.traversal()
+ 
 
 
